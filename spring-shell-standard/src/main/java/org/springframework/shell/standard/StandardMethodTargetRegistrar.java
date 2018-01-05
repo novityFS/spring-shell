@@ -65,7 +65,7 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 				String group = getOrInferGroup(method);
 				for (String key : keys) {
 					Supplier<Availability> availabilityIndicator = findAvailabilityIndicator(keys, bean, method);
-					MethodTarget target = new MethodTarget(method, bean, new Command.Help(shellMapping.value(), group), availabilityIndicator);
+					MethodTarget target = new MethodTarget(method, bean, new Command.Help(shellMapping.value(), group, shellMapping.examples()), availabilityIndicator);
 					registry.register(key, target);
 					commands.put(key, target);
 				}

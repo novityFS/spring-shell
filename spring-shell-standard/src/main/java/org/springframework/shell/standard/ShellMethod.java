@@ -68,4 +68,5 @@ public @interface ShellMethod {
 	 */
 	String group() default INHERITED;
 
+	String examples() default "";
 }

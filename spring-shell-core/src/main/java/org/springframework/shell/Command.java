@@ -29,7 +29,6 @@ public interface Command {
 	 * @author Eric Bottard
 	 */
 	class Help {
-
 		/**
 		 * Optional group to gather related commands together.
 		 */
@@ -41,14 +40,24 @@ public interface Command {
 		 */
 		private final String description;
 
-		public Help(String description) {
-			this(description, null);
+		/**
+		 * Optional examples section for the command.
+		 */
+		private final String examples;
+
+		public Help(final String description) {
+			this(description, null, null);
 		}
 
-		public Help(String description, String group) {
+		public Help(final String description, final String group) {
+			this(description, group, null);
+		}
+
+		public Help(final String description, final String group, final String examples) {
 			Assert.isTrue(StringUtils.hasText(description), "Command description cannot be null or empty");
 			this.description = description;
 			this.group = StringUtils.hasText(group) ? group : "";
+			this.examples = StringUtils.hasText(examples) ? examples : "";
 		}
 
 		public String getDescription() {
@@ -59,19 +68,23 @@ public interface Command {
 			return group;
 		}
 
+		public String getExamples() {
+			return examples;
+		}
+
 		@Override
 		public boolean equals(Object o) {
 			if (this == o) return true;
 			if (o == null || getClass() != o.getClass()) return false;
 			Help help = (Help) o;
 			return Objects.equals(group, help.group) &&
-					Objects.equals(description, help.description);
+					Objects.equals(description, help.description) &&
+					Objects.equals(examples, help.examples);
 		}
 
 		@Override
 		public int hashCode() {
-			return Objects.hash(group, description);
+			return Objects.hash(group, description, examples);
 		}
 	}
-
 }

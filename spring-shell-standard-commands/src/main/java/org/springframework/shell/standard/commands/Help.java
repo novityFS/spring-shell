@@ -140,6 +140,9 @@ public class Help {
 		// AVAILABILITY
 		documentAvailability(result, methodTarget);
 
+		// EXAMPLES
+		documentExamples(result, methodTarget.getExamples());
+
 		result.append("\n");
 		return result;
 	}
@@ -265,6 +268,13 @@ public class Help {
 			result.append('\t').append("This command is currently not available because ")
 					.append(availability.getReason())
 					.append(".\n");
+		}
+	}
+
+	private void documentExamples(AttributedStringBuilder result, String examples) {
+		if (!examples.isEmpty()) {
+			result.append("EXAMPLES", AttributedStyle.BOLD).append("\n\t");
+			result.append(examples);
 		}
 	}
 

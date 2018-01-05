@@ -95,6 +95,10 @@ public class MethodTarget implements Command {
 		return help.getDescription();
 	}
 
+	public String getExamples() {
+		return help.getExamples();
+	}
+
 	public String getGroup() {
 		return help.getGroup();
 	}
